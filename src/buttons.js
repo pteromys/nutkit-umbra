@@ -1,7 +1,5 @@
-(function () {
-
-var global_object = this['Nuts'] || this;
-global_object['ButtonSystem'] = (function () {
+var KEYS = require('./keys.js');
+var $ = require('jquery');
 
 var clickElement = function (elt) {
 	// jQuery click() won't open hyperlinks, so we do it ourselves.
@@ -14,11 +12,9 @@ var clickElement = function (elt) {
 };
 
 var ButtonSystem = {
-	KEYS: {
-		"SHIFT": 16,
-		"ESC": 27,
-		"SPACE": 32,
-		"QUESTION": 191,
+	activate: function () {
+		$(document).ready(this.activateRootButtons);
+		$(document).ready(this.activateClickouts);
 	},
 	activateRootButtons: function () {
 		$('.button_root').on('click', function (e) {
@@ -29,21 +25,19 @@ var ButtonSystem = {
 			}
 		});
 		var bindings = {};
-		var that = this;
 		$('.button_root').each(function () {
 			var k = $(this).data('key');
 			if (!k) { return; }
-			if (k in that.KEYS) { k = that.KEYS[k]; }
+			if (k in KEYS) { k = KEYS[k]; }
 			bindings[k] = $(this);
 		});
 		this.activateKeys(bindings);
 	},
 	activateKeys: function (bindings) {
-		var t = this;
 		bindings = bindings || {};
 		$(window).on('keydown', function (e) {
 			if ($('.overlay').is(':target')) {
-				if (e.which == t.KEYS.ESC) {
+				if (e.which == KEYS.ESC) {
 					var target = $(e.target);
 					var target2 = target.find(':target');
 					if (target2.length) { target = target2; }
@@ -68,15 +62,7 @@ var ButtonSystem = {
 };
 
 ButtonSystem.activateRootButtons = ButtonSystem.activateRootButtons.bind(ButtonSystem);
-$(document).ready(ButtonSystem.activateRootButtons);
-$(document).ready(ButtonSystem.activateClickouts);
 
-return ButtonSystem;
+module.exports = ButtonSystem;
 
-})();
 
-if (global_object['KEYS']) {
-	global_object['ButtonSystem']['KEYS'] = global_object['KEYS'];
-}
-
-})();

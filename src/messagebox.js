@@ -1,7 +1,4 @@
-(function () {
-
-var global_object = this['Nuts'] || this;
-global_object['MessageBox'] = (function () {
+var $ = require('jquery');
 
 var MessageBox = function (selector, debug) {
 	this.selector = selector;
@@ -62,8 +59,4 @@ MessageBox.prototype = {
 	},
 };
 
-return MessageBox;
-
-})();
-
-})();
+module.exports = MessageBox;

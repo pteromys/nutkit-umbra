@@ -1,7 +1,4 @@
-(function () {
-
-var global_object = this['Nuts'] || this;
-global_object['ActiveForm'] = (function () {
+var $ = require('jquery');
 
 var fieldName = function (field) {
 	return $(field).attr('name') || $(field).attr('id');
@@ -92,8 +89,4 @@ ActiveForm.prototype = {
 	},
 };
 
-return ActiveForm;
-
-})();
-
-})();
+module.exports = ActiveForm;
