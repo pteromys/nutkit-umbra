@@ -19,12 +19,13 @@
   { "browserify": "~6.3"
   , "browserify-shim": "~3.8"
   , "watchify": ">=2.1.0"
-  , "uglifyjs": ">=2.3"
+  , "uglify-js": ">=2.3"
+  , "exorcist": ">=0.1"
   }
 , "scripts":
-  { "build": "browserify src/umbra.js -d -s Umbra -o dist/umbra.js"
+  { "build": "browserify src/umbra.js -d -s Umbra | exorcist dist/umbra.js.map > dist/umbra.js"
   , "watch": "watchify src/umbra.js -d -s Umbra -o dist/umbra.js -v"
-  , "minify": "uglifyjs dist/umbra.js -c > dist/umbra.min.js"
+  , "minify": "uglifyjs dist/umbra.js -c --in-source-map dist/umbra.js.map --source-map dist/umbra.min.js.map --source-map-url umbra.min.js.map -o dist/umbra.min.js"
   }
 , "browserify":
   { "transform": [ "browserify-shim" ]
