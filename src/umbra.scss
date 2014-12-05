@@ -1,3 +1,15 @@
+/* Normalization */
+html {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+*, *:before, *:after {
+	-webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	box-sizing: inherit;
+}
+
 /* Overlays and interface boxes */
 .overlay {
 	position: absolute;
@@ -58,13 +70,8 @@ h2 {
 	width: 1em; height: 1em;
 	line-height: 1em;
 }
-.icon.button {
-	width: auto; height: auto;
-}
-.button, a.button, button.button {
+.button, a.button {
 	/* Button shape */
-	/*width: 1em;*/
-	/*height: 1em;*/
 	padding: 0.25em;
 	border-radius: 0.25em;
 	/* color */
