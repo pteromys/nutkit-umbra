@@ -1,4 +1,4 @@
-all: dist/umbra.min.js
+all: dist/umbra.css dist/umbra.min.js
 
 .PHONY: watchcss watchify
 
