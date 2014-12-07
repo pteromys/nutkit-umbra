@@ -13,7 +13,7 @@ watchify:
 
 COMPASS = PATH=$(shell gem env gempath | sed -e 's?:\|$$$$?/bin:?g')$(PATH) sh -c 'compass COMPASSCMD --sourcemap --sass-dir src --css-dir dist'
 
-dist/umbra.css: src/umbra.scss package.json
+dist/umbra.css: src/*.scss package.json
 	$(subst COMPASSCMD,compile,$(COMPASS))
 
 watchcss:

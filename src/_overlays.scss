@@ -1,0 +1,29 @@
+/* Overlays and interface boxes */
+.overlay {
+	@extend %container;
+	top: 1em; bottom: 2em; left: 1em; right: 1em;
+	margin: 0em; padding: 0em;
+	&:target {
+		visibility: visible;
+		opacity: 1;
+		z-index: $zOverlay;
+		transition: visibility 0.0s 0.0s, opacity 0.2s 0.0s, z-index 0.0s 0.0s;
+	}
+	visibility: hidden;
+	opacity: 0;
+	z-index: -1;
+	transition: visibility 0.0s 0.2s, opacity 0.2s 0.0s, z-index 0.0s 0.0s;
+}
+.box {
+	@extend %inline;
+	color: $cText;
+	background: $cBgBlended;
+	background: rgba($cBg, $cBgAlpha);
+	box-shadow: 0em 0em 2em 0em rgba(255, 255, 255, 0.5);
+	text-align: left;
+	padding: 0.5em 1.5em;
+	border-radius: 1em;
+	max-width: 25em;
+	max-height: 100%;
+	overflow-y: auto;
+}

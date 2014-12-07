@@ -1,0 +1,55 @@
+/* Message Box */
+.messagebox {
+	@extend %container;
+	top: 1em; left: 0em; right: 0em; height: 0em;
+	overflow: visible;
+	z-index: $zMessages;
+	.box { max-height: 6em; text-align: center; }
+	.box:empty {
+		visibility: hidden; z-index: -1; padding-top: 0em; padding-bottom: 0em;
+		transition: visibility 0s 0.1s, z-index 0s 0.1s,
+			padding-top 0.1s 0s, padding-bottom 0.1s 0s;
+	}
+}
+.message {
+	@include alpha-fallback(background, $cMessageBg, 0, $cBgBlended);
+	padding: 0.1em 0.5em;
+	border-radius: 0.2em;
+	line-height: 0;
+	opacity: 0.0;
+	margin: 0em -0.5em;
+	transition: background-color 0.1s, line-height 0.1s, opacity 0.1s;
+	&.active {
+		line-height: 1.2;
+		opacity: 1.0;
+	}
+	&.pinned { @include alpha-fallback(background, $cMessageBg, 0.9); }
+	&.pinned:before { content: '\002605'; padding-right: 0.5em; }
+	&.error { color: $cMessageError; font-weight: bold; }
+	&.warning { color: $cMessageWarning; }
+	&.debug { opacity: 0.5; }
+}
+
+/* Progress bars */
+.progressbar {
+	@extend %inline;
+	position: relative;
+	width: 5em;
+	height: 1em;
+	margin-left: 1em;
+	border-radius: 0.4em;
+	overflow: hidden;
+	border: {
+		width: 1px;
+		style: solid;
+		@include alpha-fallback(color, $cText, 0.5);
+	}
+	background: transparent;
+}
+.progressbar_fill {
+	position: absolute;
+	width: 0em;
+	height: 1em;
+	border-radius: 0.2em;
+	@include alpha-fallback(background, $cText, 0.75);
+}

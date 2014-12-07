@@ -17,18 +17,19 @@ var MessageBox = function (selector, debug) {
 			}
 		}
 	});
+	global_registry[selector] = this;
 };
 
 var ProgressBar = function (parent_box, text) {
 	this.parent_box = parent_box;
 	this.msgdiv = parent_box.post(text, 'progress', 86400000);
-	this.msgdiv.append($('<div class="progressbar"><div></div></div>'));
+	this.msgdiv.append($('<div class="progressbar"><div class="progressbar_fill"></div></div>'));
 };
 
 ProgressBar.prototype = {
 	set: function (amount) {
 		var percent = (amount * 100) + '%';
-		this.msgdiv.find('.progressbar > div').css({width: percent});
+		this.msgdiv.find('.progressbar_fill').css({width: percent});
 		if (amount >= 1) {
 			window.setTimeout(this.parent_box.hide.bind(this.parent_box, this.msgdiv), 100);
 		}

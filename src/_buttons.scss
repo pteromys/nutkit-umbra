@@ -1,0 +1,54 @@
+/* Buttons */
+.button, a.button {
+	// anchor elements are colored by a:link etc.
+	color: $cText;
+	cursor: pointer;
+	border: none;
+	text-decoration: none;
+}
+.button {
+	@extend %inline;
+	text-align: center;
+	padding: 0.25em;
+	border-radius: 0.25em;
+	transition: background-color 0.1s, opacity 0.1s;
+	opacity: 0.8;
+	@include alpha-fallback(background, $cText, 0.3, $cBgBlended);
+	&:hover, &:focus, input:focus + label > & {
+		opacity: 1.0;
+	}
+	&.disabled {
+		opacity: 0.25;
+		cursor: default;
+		@include alpha-fallback(background, $cText, 0, $cBgBlended);
+	}
+}
+
+/* Types of buttons */
+.button_root {
+	position: absolute;
+	z-index: $zButtons;
+}
+.overlay .box .button_leftmargin, %button_leftmargin {
+	float: left;
+	margin: 0em 0.25em 0.25em -0.5em;
+}
+.overlay .box .button_rightmargin, %button_rightmargin {
+	float: right;
+	margin: 0em -0.5em 0.25em 0.25em;
+}
+.box > .button_close:first-child, .box > :first-child + .button_close {
+	@extend %button_rightmargin
+}
+.box > .button_back:first-child, .box > :first-child + .button_back {
+	@extend %button_leftmargin
+}
+#button_config {
+	top: 0.25em;
+	right: 0.25em;
+}
+#button_help {
+	bottom: 0.25em;
+	right: 0.25em;
+}
+
