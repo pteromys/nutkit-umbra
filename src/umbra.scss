@@ -23,6 +23,8 @@ $zOverlay: 1;
 $zMessages: 10;
 $zButtons: 5;
 
+$lMaxWidth: 25em;
+
 // Mixins
 @mixin alpha-fallback($attribute, $rgb, $alpha, $background: null) {
 	#{$attribute}: if($background == null, $rgb, mix($rgb, $background, percentage($alpha)));
