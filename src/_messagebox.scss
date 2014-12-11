@@ -1,10 +1,10 @@
 /* Message Box */
 .messagebox {
 	@extend %container;
-	top: 1em; left: 0em; right: 0em; height: 0em;
+	top: 0em; left: 0em; right: 0em; height: 0em;
 	overflow: visible;
 	z-index: $zMessages;
-	.box { max-height: 6em; text-align: center; }
+	.box { max-height: 6em; margin-top: 1em; text-align: center; }
 	.box:empty {
 		visibility: hidden; z-index: -1; padding-top: 0em; padding-bottom: 0em;
 		transition: visibility 0s 0.1s, z-index 0s 0.1s,
